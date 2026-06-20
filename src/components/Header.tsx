@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Plus } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface HeaderProps {
   currentView: string;
   onNavigate: (view: string) => void;
-  theme: 'light' | 'dark';
-  onToggleTheme: () => void;
 }
 
-export function Header({ currentView, onNavigate, theme, onToggleTheme }: HeaderProps) {
+export function Header({ currentView, onNavigate }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -39,7 +38,7 @@ export function Header({ currentView, onNavigate, theme, onToggleTheme }: Header
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/90 dark:bg-[#121212]/92 backdrop-blur-md border-b border-black/5 dark:border-white/10 shadow-sm py-3'
+          ? 'bg-white/60 dark:bg-[#121212]/60 backdrop-blur-xl border-b border-white/80 dark:border-white/10 shadow-[0_12px_40px_-15px_rgba(0,0,0,0.08),inset_0_1px_1px_rgba(255,255,255,0.5)] py-3'
           : 'bg-transparent py-5'
       }`}
     >
@@ -48,70 +47,15 @@ export function Header({ currentView, onNavigate, theme, onToggleTheme }: Header
         <a
           href="#home"
           onClick={(e) => handleLinkClick('home', e)}
-          className="flex items-center gap-3 group"
+          className="flex items-center gap-2 sm:gap-3 group"
           id="nav-brand-logo"
         >
-          <svg
-            className="w-8 h-8 transition-transform duration-300 group-hover:scale-105"
-            viewBox="0 0 120 120"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient id="gold-nav" x1="18" y1="8" x2="100" y2="106" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#FFE082" />
-                <stop offset="40%" stop-color="#F4B400" />
-                <stop offset="100%" stop-color="#B27A00" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M 20 60 L 50 8 L 68 17.6 L 68 31.25 L 58 37 L 58 48.5 L 68 54.25 L 68 65.75 L 58 71.5 L 58 83 L 68 88.75 L 50 112 Z"
-              fill="url(#gold-nav)"
-            />
-            <polygon points="69.96,31.25 79.92,37 79.92,48.5 69.96,54.25 60,48.5 60,37" fill="url(#gold-nav)" />
-            <polygon
-              points="79.92,14 89.88,19.75 89.88,31.25 79.92,37 69.96,31.25 69.96,19.75"
-              stroke="url(#gold-nav)"
-              strokeWidth="2.5"
-              fill="none"
-            />
-            <polygon
-              points="89.88,31.25 99.84,37 99.84,48.5 89.88,54.25 79.92,48.5 79.92,37"
-              stroke="url(#gold-nav)"
-              strokeWidth="2.5"
-              fill="none"
-            />
-            <polygon
-              points="79.92,48.5 89.88,54.25 89.88,65.75 79.92,71.5 69.96,65.75 69.96,54.25"
-              stroke="url(#gold-nav)"
-              strokeWidth="2.5"
-              fill="none"
-            />
-            <polygon
-              points="89.88,65.75 99.84,71.5 99.84,83 89.88,88.75 79.92,83 79.92,71.5"
-              stroke="url(#gold-nav)"
-              strokeWidth="2.5"
-              fill="none"
-            />
-            <polygon
-              points="79.92,83 89.88,88.75 89.88,100.25 79.92,106 69.96,100.25 69.96,88.75"
-              stroke="url(#gold-nav)"
-              strokeWidth="2.5"
-              fill="none"
-            />
-            <polygon points="69.96,65.75 79.92,71.5 79.92,83 69.96,88.75 60,83 60,71.5" fill="url(#gold-nav)" />
-            <polygon
-              points="99.84,48.5 109.8,54.25 109.8,65.75 99.84,71.5 89.88,65.75 89.88,54.4"
-              stroke="url(#gold-nav)"
-              strokeWidth="2.5"
-              fill="none"
-            />
-          </svg>
+          <Logo className="w-8 h-8 sm:w-10 sm:h-10 transition-transform duration-300 group-hover:scale-105" />
           <div className="flex flex-col">
-            <span className="text-lg font-bold tracking-tight text-black dark:text-white leading-none">
-              7Hive <span className="text-[#0A84FF] font-semibold tracking-wider">MEDIA</span>
+            <span className="text-base sm:text-lg font-bold tracking-tight text-black dark:text-white leading-none flex items-center gap-0.5">
+              7Hive <span className="text-[#0A84FF] font-semibold tracking-wider flex items-center gap-0.5">MEDIA<Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5 stroke-[3] ml-0.5" /></span>
             </span>
-            <span className="text-[9px] text-[#555] dark:text-[#888] font-medium tracking-wide mt-0.5">
+            <span className="text-[9px] text-[#555] dark:text-[#888] font-medium tracking-wide mt-0.5 hidden sm:block">
               Building Digital Hives for Business Growth.
             </span>
           </div>
@@ -137,25 +81,11 @@ export function Header({ currentView, onNavigate, theme, onToggleTheme }: Header
             </a>
           ))}
 
-          {/* Theme custom Toggle toggle */}
-          <button
-            onClick={onToggleTheme}
-            className="p-2 border border-black/5 dark:border-white/10 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
-            title="Toggle theme"
-            id="theme-switcher-btn"
-          >
-            {theme === 'dark' ? (
-              <Sun className="w-4 h-4 text-amber-400" />
-            ) : (
-              <Moon className="w-4 h-4 text-neutral-600" />
-            )}
-          </button>
-
           {/* Nav CTA */}
           <a
             href="#contact"
             onClick={(e) => handleLinkClick('contact', e)}
-            className="inline-flex items-center justify-center text-xs font-semibold uppercase tracking-wider px-5 py-2.5 rounded-full bg-[#0A84FF] hover:bg-sky-500 text-white dark:text-neutral-900 transition-all shadow-sm hover:shadow"
+            className="inline-flex items-center justify-center text-xs font-semibold uppercase tracking-wider px-5 py-2.5 rounded-full bg-[#0A84FF] hover:bg-sky-500 text-white dark:text-[#121212] transition-all shadow-[0_4px_16px_rgba(10,132,255,0.2),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 active:translate-y-0 active:scale-95 duration-200"
             id="nav-cta-action"
           >
             Get Started
@@ -164,18 +94,6 @@ export function Header({ currentView, onNavigate, theme, onToggleTheme }: Header
 
         {/* Mobile controls */}
         <div className="flex md:hidden items-center gap-3">
-          <button
-            onClick={onToggleTheme}
-            className="p-2 border border-black/5 dark:border-white/10 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
-            id="mobile-theme-switcher"
-          >
-            {theme === 'dark' ? (
-              <Sun className="w-4 h-4 text-amber-400" />
-            ) : (
-              <Moon className="w-4 h-4 text-neutral-600" />
-            )}
-          </button>
-
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="p-2 text-black dark:text-white"

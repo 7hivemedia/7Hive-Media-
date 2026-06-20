@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, Linkedin, Instagram, Twitter } from 'lucide-react';
+import { Mail, Linkedin, Instagram, Twitter, Plus } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface FooterProps {
   onNavigate: (view: string) => void;
@@ -31,28 +32,9 @@ export function Footer({ onNavigate }: FooterProps) {
           {/* Brand */}
           <div className="lg:col-span-2 max-w-sm">
             <div className="flex items-center gap-3 mb-4">
-              <svg className="w-8 h-8" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="gold-footer" x1="18" y1="8" x2="100" y2="106" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#FFE082" />
-                    <stop offset="40%" stop-color="#F4B400" />
-                    <stop offset="100%" stop-color="#B27A00" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M 20 60 L 50 8 L 68 17.6 L 68 31.25 L 58 37 L 58 48.5 L 68 54.25 L 68 65.75 L 58 71.5 L 58 83 L 68 88.75 L 50 112 Z"
-                  fill="url(#gold-footer)"
-                />
-                <polygon points="69.96,31.25 79.92,37 79.92,48.5 69.96,54.25 60,48.5 60,37" fill="url(#gold-footer)" />
-                <polygon
-                  points="79.92,14 89.88,19.75 89.88,31.25 79.92,37 69.96,31.25 69.96,19.75"
-                  stroke="url(#gold-footer)"
-                  strokeWidth="2.5"
-                  fill="none"
-                />
-              </svg>
-              <span className="text-xl font-bold tracking-tight">
-                7Hive <span className="text-[#0A84FF]">MEDIA</span>
+              <Logo className="w-10 h-10 transition-transform duration-300 hover:scale-105" />
+              <span className="text-xl font-bold tracking-tight flex items-center gap-0.5 text-stone-900 dark:text-white">
+                7Hive <span className="text-[#0A84FF] flex items-center gap-0.5">MEDIA<Plus className="w-4 h-4 stroke-[3] ml-0.5" /></span>
               </span>
             </div>
             <p className="text-sm text-[#555] dark:text-[#888] leading-relaxed mb-6">
@@ -162,10 +144,18 @@ export function Footer({ onNavigate }: FooterProps) {
         <div className="border-t border-black/5 dark:border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#555] dark:text-[#888] transition-colors">
           <p>© 2026 7Hive Media. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-black dark:hover:text-white transition-colors">
+            <a
+              href="#privacy-policy"
+              onClick={(e) => handleLinkClick('privacy-policy', e)}
+              className="hover:text-black dark:hover:text-white transition-colors"
+            >
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-black dark:hover:text-white transition-colors">
+            <a
+              href="#terms-conditions"
+              onClick={(e) => handleLinkClick('terms-conditions', e)}
+              className="hover:text-black dark:hover:text-white transition-colors"
+            >
               Terms of Service
             </a>
           </div>

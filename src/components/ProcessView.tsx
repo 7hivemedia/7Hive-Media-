@@ -89,7 +89,7 @@ export function ProcessView({ onNavigate }: ProcessViewProps) {
             {steps.map((st) => (
               <div key={st.num} className="relative space-y-6">
                 {/* Visual Connector Dot */}
-                <div className="absolute -left-[45px] top-1.5 w-8 h-8 rounded-full bg-[#0A84FF] text-white font-extrabold flex items-center justify-center text-xs leading-none shadow-sm select-none">
+                <div className="absolute left-0 -translate-x-1/2 -ml-8 top-1.5 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#0A84FF] text-white font-extrabold flex items-center justify-center text-[10px] sm:text-xs leading-none shadow-sm select-none">
                   {st.num}
                 </div>
 
@@ -124,7 +124,7 @@ export function ProcessView({ onNavigate }: ProcessViewProps) {
                       <div className="space-y-3">
                         {st.deliverables.map((del, di) => (
                           <div key={di} className="flex items-center gap-2 text-xs font-semibold text-neutral-700 dark:text-neutral-300">
-                            <span className="text-xs">⚡</span>
+                            <Zap className="w-3.5 h-3.5 text-[#0A84FF] fill-[#0A84FF]/10 shrink-0" />
                             <span>{del}</span>
                           </div>
                         ))}

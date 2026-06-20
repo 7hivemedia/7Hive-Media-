@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { OnboardingState } from '../types';
+import { PremiumIcon } from './PremiumIcon';
+import { motion } from 'motion/react';
+import { Logo } from './Logo';
 
 interface ContactViewProps {
   onNavigate: (view: string) => void;
@@ -18,7 +21,7 @@ export function ContactView({ onNavigate }: ContactViewProps) {
   });
 
   const [validationError, setValidationError] = useState('');
-  const [isSubmitted, setIsSubscribed] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // Hook to check for URL hash queries (e.g. #contact?type=audit or #contact?type=call)
   useEffect(() => {
@@ -80,10 +83,10 @@ export function ContactView({ onNavigate }: ContactViewProps) {
   const handleNextStep = () => {
     if (!validateStep(currentStep)) return;
     if (currentStep < 3) {
-      setCurrentStep((prev) => prev + 1);
+       setCurrentStep((prev) => prev + 1);
     } else {
-      // Submit action
-      setIsSubscribed(true);
+       // Submit action
+       setIsSubmitted(true);
     }
   };
 
@@ -111,16 +114,34 @@ export function ContactView({ onNavigate }: ContactViewProps) {
   return (
     <div className="pt-20">
       {/* Hero */}
-      <section className="relative py-16 px-6 md:px-12 bg-white dark:bg-[#121212] transition-colors duration-300 overflow-hidden text-center border-b border-black/5 dark:border-white/10">
-        <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-[#0A84FF]/5 to-transparent pointer-none select-none" />
-        <div className="max-w-4xl mx-auto space-y-4 relative z-10">
-          <p className="text-xs font-bold text-[#0A84FF] uppercase tracking-widest font-sans">GET IN TOUCH</p>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50 leading-tight">
-            Let's Build Your Hive
-          </h1>
-          <p className="text-lg text-neutral-500 dark:text-neutral-400 max-w-xl mx-auto font-sans leading-relaxed">
-            Select your service parameters and budget guidelines, provide challenge notes, and request your custom Growth Blueprint.
-          </p>
+      <section className="relative py-14 md:py-20 px-6 md:px-12 bg-white dark:bg-[#121212] transition-colors duration-300 overflow-hidden border-b border-black/5 dark:border-white/10">
+        <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-[#0A84FF]/5 to-transparent pointer-events-none select-none" />
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+              {/* Logo in the empty part on the left */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.85, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="lg:col-span-4 flex justify-center lg:justify-start"
+          >
+            <div className="relative group">
+              {/* Vibrant soft radial shadow */}
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-[#0A84FF]/20 to-cyan-500/10 rounded-full blur-2xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+              <Logo className="w-44 h-44 md:w-52 md:h-52 filter drop-shadow-[0_12px_30px_rgba(10,132,255,0.22)] relative transition-all duration-300 group-hover:scale-105" />
+            </div>
+          </motion.div>
+
+          {/* Text and Context on the Right */}
+          <div className="lg:col-span-8 text-center lg:text-left space-y-4">
+            <p className="text-xs font-bold text-[#0A84FF] uppercase tracking-widest font-sans">GET IN TOUCH</p>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50 leading-tight">
+              Let's Build Your Hive
+            </h1>
+            <p className="text-lg text-neutral-500 dark:text-neutral-400 max-w-xl mx-auto lg:mx-0 font-sans leading-relaxed">
+              Select your service parameters and budget guidelines, provide challenge notes, and request your custom Growth Blueprint.
+            </p>
+          </div>
+
         </div>
       </section>
 
@@ -136,7 +157,7 @@ export function ContactView({ onNavigate }: ContactViewProps) {
 
             <div className="space-y-6">
               <div className="flex gap-4 items-start">
-                <span className="text-2xl select-none">📊</span>
+                <PremiumIcon name="BarChart3" size={18} className="w-9 h-9 shrink-0" />
                 <div>
                   <h4 className="font-semibold text-sm">Custom Growth Audit</h4>
                   <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mt-1">
@@ -146,7 +167,7 @@ export function ContactView({ onNavigate }: ContactViewProps) {
               </div>
 
               <div className="flex gap-4 items-start">
-                <span className="text-2xl select-none">⚡</span>
+                <PremiumIcon name="Zap" size={18} className="w-9 h-9 shrink-0" />
                 <div>
                   <h4 className="font-semibold text-sm">System Integrations</h4>
                   <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mt-1">
@@ -156,7 +177,7 @@ export function ContactView({ onNavigate }: ContactViewProps) {
               </div>
 
               <div className="flex gap-4 items-start">
-                <span className="text-2xl select-none">🏆</span>
+                <PremiumIcon name="Trophy" size={18} className="w-9 h-9 shrink-0" />
                 <div>
                   <h4 className="font-semibold text-sm font-sans">98% Retention Success</h4>
                   <p className="text-xs text-[#555] dark:text-[#888] leading-relaxed mt-1">

@@ -3,7 +3,7 @@ import { Service, CaseStudy, Testimonial, FAQItem, BlogPost } from './types';
 export const SERVICES: Service[] = [
   {
     id: 'web-dev',
-    icon: '🌐',
+    icon: 'Globe',
     title: 'Website Development',
     desc: 'High-performance, conversion-optimized websites built with modern technology. Fast, responsive, and designed to turn visitors into customers.',
     category: 'dev',
@@ -12,7 +12,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'waas',
-    icon: '🔄',
+    icon: 'RefreshCw',
     title: 'Website-as-a-Service',
     desc: 'Subscribe to a professionally managed website. We handle design, development, hosting, updates, and optimization — so you never worry about your site again.',
     category: 'dev',
@@ -21,7 +21,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'seo',
-    icon: '🔍',
+    icon: 'Search',
     title: 'Search Engine Optimization',
     desc: 'Rank for the terms your customers actually search. Technical SEO, content strategy, and local optimization that compounds over time.',
     category: 'marketing',
@@ -30,7 +30,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'google-ads',
-    icon: '📊',
+    icon: 'BarChart3',
     title: 'Google Ads',
     desc: 'Precision-targeted search and display campaigns that capture high-intent buyers. Every rupee tracked, every conversion measured.',
     category: 'marketing',
@@ -39,7 +39,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'meta-ads',
-    icon: '📱',
+    icon: 'Smartphone',
     title: 'Meta Ads',
     desc: 'Reach your ideal audience on Facebook and Instagram with creative-driven campaigns designed for engagement, leads, and conversions.',
     category: 'marketing',
@@ -48,7 +48,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'social-mgmt',
-    icon: '📣',
+    icon: 'Megaphone',
     title: 'Social Media Management',
     desc: 'Strategic content creation and community management that builds brand authority. Not just posts — a complete social presence system.',
     category: 'marketing',
@@ -57,7 +57,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'lead-gen',
-    icon: '🎯',
+    icon: 'Target',
     title: 'Lead Generation',
     desc: 'Multi-channel lead generation systems that attract, qualify, and deliver sales-ready prospects directly to your pipeline.',
     category: 'marketing',
@@ -66,7 +66,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'marketing-auto',
-    icon: '⚡',
+    icon: 'Zap',
     title: 'Marketing Automation',
     desc: 'Automated email sequences, follow-ups, and nurturing workflows that convert leads while you sleep. Set it up once, scale infinitely.',
     category: 'automation',
@@ -75,7 +75,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'whatsapp-auto',
-    icon: '💬',
+    icon: 'MessageSquare',
     title: 'WhatsApp Automation',
     desc: 'Engage leads and customers through automated WhatsApp workflows. Instant responses, appointment booking, and broadcast campaigns.',
     category: 'automation',
@@ -84,7 +84,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'crm-setup',
-    icon: '🗂️',
+    icon: 'Database',
     title: 'CRM Setup & Integration',
     desc: 'Organize your entire sales pipeline with a custom CRM setup. Track every lead, automate follow-ups, and never lose a deal again.',
     category: 'dev',
@@ -96,7 +96,7 @@ export const SERVICES: Service[] = [
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'solar-edge',
-    icon: '☀️',
+    icon: 'Sun',
     industry: 'Solar Industry',
     title: 'SolarEdge Pro — Lead Gen Funnel',
     desc: 'We deployed an integrated Google Ads and high-speed Landing Page campaign connected to an automated SMS/email follow-up schedule. This transformed their sales pipelines with high-intent inbound opportunities.',
@@ -109,7 +109,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: 'urban-bite',
-    icon: '🏪',
+    icon: 'Store',
     industry: 'Local Business',
     title: 'UrbanBite — Restaurant Scale System',
     desc: 'We launched a modern ordering interface, optimized Meta lead funnels, and deployed WhatsApp auto-responders that automated delivery tracking and repeat-order discounts.',
@@ -122,7 +122,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: 'legal-first',
-    icon: '⚖️',
+    icon: 'Scale',
     industry: 'Professional Services',
     title: 'LegalFirst — Inbound SEO Infrastructure',
     desc: 'We re-engineered their website technical architecture, wrote detailed practice-area resources, and structured calendar automation for booking client consultations.',
@@ -234,7 +234,7 @@ export const FAQS: FAQItem[] = [
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: 'b1',
-    visual: '🌐',
+    visual: 'Globe',
     date: 'June 15, 2026',
     tag: 'Growth',
     title: 'WaaS vs. Traditional Custom Dev: Which is Best for You?',
@@ -242,7 +242,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: 'b2',
-    visual: '⚡',
+    visual: 'Zap',
     date: 'June 10, 2026',
     tag: 'Automation',
     title: 'Top 5 Automation Workflows Every Enterprise Needs',
@@ -250,7 +250,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: 'b3',
-    visual: '🔍',
+    visual: 'Search',
     date: 'May 28, 2026',
     tag: 'Marketing',
     title: 'The SEO Blueprint: Rank Page 1 for Local Keywords',

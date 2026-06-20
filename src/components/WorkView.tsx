@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { CASE_STUDIES } from '../data';
+import { PremiumIcon } from './PremiumIcon';
 
 interface WorkViewProps {
   onNavigate: (view: string) => void;
@@ -65,9 +66,9 @@ export function WorkView({ onNavigate }: WorkViewProps) {
                     <span className="text-[10px] uppercase font-bold tracking-widest text-[#0A84FF]">
                       {cs.industry}
                     </span>
-                    <span className="text-2xl select-none">{cs.icon}</span>
+                    <PremiumIcon name={cs.icon} className="w-10 h-10 rounded-xl" size={18} />
                   </div>
-                  <h3 className="text-xl font-bold text-neutral-905 dark:text-neutral-50">{cs.title}</h3>
+                  <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-50">{cs.title}</h3>
                   <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
                     {cs.desc}
                   </p>

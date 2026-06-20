@@ -31,7 +31,7 @@ export function TestimonialsView({ onNavigate }: TestimonialsViewProps) {
               >
                 <div className="space-y-4">
                   <span className="text-amber-400 text-sm tracking-tight">{'★'.repeat(t.stars)}</span>
-                  <p className="text-base text-neutral-805 dark:text-neutral-200 italic leading-relaxed">
+                  <p className="text-base text-neutral-800 dark:text-neutral-200 italic leading-relaxed">
                     "{t.text}"
                   </p>
                 </div>

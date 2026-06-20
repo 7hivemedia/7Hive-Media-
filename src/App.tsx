@@ -9,17 +9,11 @@ import { TestimonialsView } from './components/TestimonialsView';
 import { FaqView } from './components/FaqView';
 import { BlogView } from './components/BlogView';
 import { ContactView } from './components/ContactView';
+import { PrivacyPolicyView } from './components/PrivacyPolicyView';
+import { TermsView } from './components/TermsView';
 import { PhoneCall } from 'lucide-react';
 
 export default function App() {
-  // Theme state
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    const saved = localStorage.getItem('theme');
-    if (saved === 'dark' || saved === 'light') return saved;
-    // Default to light as specified in the guidelines: "Default to a clean, high-contrast light theme (soft off-whites and deep charcoal grays) with elegant typography."
-    return 'light';
-  });
-
   // Current subview state tracking hash
   const [currentView, setCurrentView] = useState<string>(() => {
     const hash = window.location.hash;
@@ -58,17 +52,12 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Update body tag elements for theme
+  // Ensure any dark-theme class on body is cleaned up
   useEffect(() => {
-    if (theme === 'dark') {
-      document.body.classList.add('dark-theme');
-    } else {
-      document.body.classList.remove('dark-theme');
-    }
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+    document.body.classList.remove('dark-theme');
+  }, []);
 
-  // Client coordinate tracker
+  // Client coordinate tracker with robust event delegation for interactive elements
   useEffect(() => {
     const checkFinePointer = () => {
       setIsFinePointer(window.matchMedia('(pointer: fine)').matches);
@@ -79,28 +68,30 @@ export default function App() {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
 
-    const handleMouseEnterInteractive = () => setCursorHover(true);
-    const handleMouseLeaveInteractive = () => setCursorHover(false);
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    // Apply interactive hooks
-    const applyHoverLocks = () => {
-      const links = document.querySelectorAll('a, button, [role="button"]');
-      links.forEach((l) => {
-        l.addEventListener('mouseenter', handleMouseEnterInteractive);
-        l.addEventListener('mouseleave', handleMouseLeaveInteractive);
-      });
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && target.closest?.('a, button, [role="button"], input, select, textarea, [data-interactive="true"]')) {
+        setCursorHover(true);
+      }
     };
 
-    // Delay a bit to ensure DOM elements render
-    const timer = setTimeout(applyHoverLocks, 500);
+    const handleMouseOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && target.closest?.('a, button, [role="button"], input, select, textarea, [data-interactive="true"]')) {
+        setCursorHover(false);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseover', handleMouseOver);
+    window.addEventListener('mouseout', handleMouseOut);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      clearTimeout(timer);
+      window.removeEventListener('mouseover', handleMouseOver);
+      window.removeEventListener('mouseout', handleMouseOut);
     };
-  }, [currentView]);
+  }, []);
 
   // Trail smooth physics tick
   useEffect(() => {
@@ -120,10 +111,6 @@ export default function App() {
     frameId = requestAnimationFrame(updateTrail);
     return () => cancelAnimationFrame(frameId);
   }, [mousePos, isFinePointer]);
-
-  const handleToggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
-  };
 
   const handleNavigate = (view: string) => {
     window.location.hash = view;
@@ -151,6 +138,10 @@ export default function App() {
         return <BlogView onNavigate={handleNavigate} />;
       case 'contact':
         return <ContactView onNavigate={handleNavigate} />;
+      case 'privacy-policy':
+        return <PrivacyPolicyView onNavigate={handleNavigate} />;
+      case 'terms-conditions':
+        return <TermsView onNavigate={handleNavigate} />;
       case 'home':
       default:
         return <HomeView onNavigate={handleNavigate} />;
@@ -158,27 +149,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-[#F5F5F5] dark:bg-[#121212] text-black dark:text-[#E0E0E0] transition-colors duration-300 relative selection:bg-[#0A84FF] selection:text-white">
-      {/* Dynamic Trail Mouse Cursor for Desktop screens */}
-      {isFinePointer && (
-        <div
-          className={`fixed pointer-events-none z-[100] transform -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#0A84FF] mix-blend-difference transition-all duration-150 ${
-            cursorHover ? 'w-10 h-10 bg-[#0A84FF]/10' : 'w-5 h-5 bg-transparent'
-          }`}
-          style={{
-            left: `${trailPos.x}px`,
-            top: `${trailPos.y}px`,
-          }}
-          aria-hidden="true"
-        />
-      )}
-
+    <div className="min-h-screen flex flex-col font-sans bg-[#FAF7F2] text-stone-900 transition-colors duration-300 relative selection:bg-amber-600 selection:text-white overflow-x-hidden">
       {/* Persistent Page Header Navbar */}
       <Header
         currentView={currentView}
         onNavigate={handleNavigate}
-        theme={theme}
-        onToggleTheme={handleToggleTheme}
       />
 
       {/* Active screen content layout */}

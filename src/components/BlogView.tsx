@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BLOG_POSTS } from '../data';
+import { PremiumIcon } from './PremiumIcon';
 
 interface BlogViewProps {
   onNavigate: (view: string) => void;
@@ -45,8 +46,8 @@ export function BlogView({ onNavigate }: BlogViewProps) {
                 className="bg-white dark:bg-[#121212] border border-black/5 dark:border-white/10 rounded-2xl overflow-hidden hover:border-[#0A84FF]/25 hover:shadow-xs transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
-                  <div className="h-44 bg-neutral-50 dark:bg-neutral-950 flex items-center justify-center text-4xl select-none group-hover:scale-102 transition-transform duration-300">
-                    {post.visual}
+                  <div className="h-44 bg-neutral-50 dark:bg-neutral-950/40 flex items-center justify-center group-hover:scale-102 transition-transform duration-300">
+                    <PremiumIcon name={post.visual} size={32} className="w-14 h-14" />
                   </div>
                   <div className="p-6 space-y-4">
                     <div className="flex items-center justify-between text-xs text-neutral-400 font-medium">
@@ -93,7 +94,7 @@ export function BlogView({ onNavigate }: BlogViewProps) {
                   value={subscribeEmail}
                   onChange={(e) => setSubscribeEmail(e.target.value)}
                   placeholder="your@email.com"
-                  className="w-full text-xs px-4 py-3 border border-black/5 dark:border-white/10 rounded-full bg-neutral-50 dark:bg-[#1e1e1e] text-neutral-805 dark:text-neutral-50 focus:outline-none focus:border-[#0A84FF] transition-colors"
+                  className="w-full text-xs px-4 py-3 border border-black/5 dark:border-white/10 rounded-full bg-neutral-50 dark:bg-[#1e1e1e] text-neutral-800 dark:text-neutral-50 focus:outline-none focus:border-[#0A84FF] transition-colors"
                 />
                 <button
                   type="submit"
@@ -101,7 +102,7 @@ export function BlogView({ onNavigate }: BlogViewProps) {
                   className={`px-8 py-3 rounded-full text-xs font-bold select-none cursor-pointer transition-colors ${
                     isSubscribed
                       ? 'bg-green-500 text-white'
-                      : 'bg-[#0A84FF] hover:bg-sky-505 hover:bg-blue-600 text-white font-bold tracking-widest'
+                      : 'bg-[#0A84FF] hover:bg-blue-600 text-white font-bold tracking-widest'
                   }`}
                   id="weekly-growth-subs-btn"
                 >

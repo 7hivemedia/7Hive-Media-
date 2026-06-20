@@ -54,7 +54,7 @@ export function FaqView({ onNavigate }: FaqViewProps) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search questions or keyword answers..."
-              className="w-full pl-12 pr-4 py-3 bg-neutral-50 dark:bg-[#1a1a1a] border border-black/5 dark:border-white/10 rounded-full focus:outline-none focus:border-[#0A84FF] text-sm text-neutral-802 dark:text-neutral-50 transition-colors shadow-sm"
+              className="w-full pl-12 pr-4 py-3 bg-neutral-50 dark:bg-[#1a1a1a] border border-black/5 dark:border-white/10 rounded-full focus:outline-none focus:border-[#0A84FF] text-sm text-neutral-800 dark:text-neutral-50 transition-colors shadow-sm"
               id="faq-search-input-field"
             />
           </div>
@@ -93,7 +93,7 @@ export function FaqView({ onNavigate }: FaqViewProps) {
                   >
                     <button
                       onClick={() => handleFaqToggle(faq.id)}
-                      className="w-full px-6 py-5 flex items-center justify-between text-left font-semibold text-neutral-805 dark:text-neutral-50 hover:text-[#0A84FF] transition-colors cursor-pointer"
+                      className="w-full px-6 py-5 flex items-center justify-between text-left font-semibold text-neutral-800 dark:text-neutral-50 hover:text-[#0A84FF] transition-colors cursor-pointer"
                     >
                       <span className="pr-4">{faq.question}</span>
                       <span className="text-xl leading-none text-[#0A84FF]">{isSelected ? '−' : '+'}</span>
