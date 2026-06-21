@@ -158,6 +158,13 @@ export function Footer({ onNavigate }: FooterProps) {
             >
               Terms of Service
             </a>
+            <a
+              href="#login"
+              onClick={(e) => handleLinkClick('login', e)}
+              className="text-[#0A84FF] hover:underline font-semibold transition-colors"
+            >
+              Systems Admin
+            </a>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Search } from 'lucide-react';
-import { FAQS } from '../data';
+import { dynamicStore } from '../lib/dynamicStore';
+import { FAQItem } from '../types';
 
 interface FaqViewProps {
   onNavigate: (view: string) => void;
@@ -10,6 +11,11 @@ export function FaqView({ onNavigate }: FaqViewProps) {
   const [activeFaqId, setActiveFaqId] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<'all' | 'general' | 'services' | 'automation' | 'pricing'>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [faqs, setFaqs] = useState<FAQItem[]>([]);
+
+  useEffect(() => {
+    dynamicStore.getFAQs().then(setFaqs);
+  }, []);
 
   const handleFaqToggle = (id: string) => {
     setActiveFaqId(activeFaqId === id ? null : id);
@@ -24,7 +30,7 @@ export function FaqView({ onNavigate }: FaqViewProps) {
   ];
 
   const filteredFaqs = useMemo(() => {
-    return FAQS.filter((faq) => {
+    return faqs.filter((faq) => {
       const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
       const matchesQuery =
         searchQuery === '' ||
@@ -32,7 +38,8 @@ export function FaqView({ onNavigate }: FaqViewProps) {
         faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesCategory && matchesQuery;
     });
-  }, [activeCategory, searchQuery]);
+  }, [faqs, activeCategory, searchQuery]);
+
 
   return (
     <div className="pt-20">

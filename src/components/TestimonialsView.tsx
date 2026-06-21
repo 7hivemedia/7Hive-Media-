@@ -1,10 +1,18 @@
-import { TESTIMONIALS } from '../data';
+import { useState, useEffect } from 'react';
+import { dynamicStore } from '../lib/dynamicStore';
+import { Testimonial } from '../types';
 
 interface TestimonialsViewProps {
   onNavigate: (view: string) => void;
 }
 
 export function TestimonialsView({ onNavigate }: TestimonialsViewProps) {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+
+  useEffect(() => {
+    dynamicStore.getTestimonials().then(setTestimonials);
+  }, []);
+
   return (
     <div className="pt-20">
       {/* Hero */}
@@ -24,7 +32,7 @@ export function TestimonialsView({ onNavigate }: TestimonialsViewProps) {
         <div className="max-w-7xl mx-auto space-y-12">
           {/* Card list */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {TESTIMONIALS.map((t) => (
+            {testimonials.map((t) => (
               <div
                 key={t.id}
                 className="bg-white dark:bg-[#121212] border border-black/5 dark:border-white/10 rounded-2xl p-8 flex flex-col justify-between hover:border-[#0A84FF]/25 hover:shadow-sm transition-all duration-300"

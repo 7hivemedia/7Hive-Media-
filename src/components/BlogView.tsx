@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { BLOG_POSTS } from '../data';
+import React, { useState, useEffect } from 'react';
+import { dynamicStore } from '../lib/dynamicStore';
+import { BlogPost } from '../types';
 import { PremiumIcon } from './PremiumIcon';
 
 interface BlogViewProps {
@@ -9,6 +10,11 @@ interface BlogViewProps {
 export function BlogView({ onNavigate }: BlogViewProps) {
   const [subscribeEmail, setSubscribeEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [blogs, setBlogs] = useState<BlogPost[]>([]);
+
+  useEffect(() => {
+    dynamicStore.getBlogs().then(setBlogs);
+  }, []);
 
   const handleSubscribeSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,6 +24,7 @@ export function BlogView({ onNavigate }: BlogViewProps) {
       setTimeout(() => setIsSubscribed(false), 4000);
     }
   };
+
 
   return (
     <div className="pt-20">
@@ -40,7 +47,7 @@ export function BlogView({ onNavigate }: BlogViewProps) {
         <div className="max-w-7xl mx-auto space-y-16">
           {/* Article blocks */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {BLOG_POSTS.map((post) => (
+            {blogs.map((post) => (
               <div
                 key={post.id}
                 className="bg-white dark:bg-[#121212] border border-black/5 dark:border-white/10 rounded-2xl overflow-hidden hover:border-[#0A84FF]/25 hover:shadow-xs transition-all duration-300 flex flex-col justify-between group"

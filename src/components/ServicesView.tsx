@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Check, ArrowRight, X, Sparkles, TrendingUp, Zap, HelpCircle } from 'lucide-react';
-import { SERVICES } from '../data';
+import { dynamicStore } from '../lib/dynamicStore';
 import { motion, AnimatePresence } from 'motion/react';
 import { Service } from '../types';
 import { PremiumIcon } from './PremiumIcon';
+
 
 interface ServicesViewProps {
   onNavigate: (view: string) => void;
@@ -65,8 +66,13 @@ const SERVICE_DETAILS: Record<string, { strategy: string; focus: string; whyEsse
 export function ServicesView({ onNavigate }: ServicesViewProps) {
   const [activeCategory, setActiveCategory] = useState<'all' | 'dev' | 'marketing' | 'automation'>('all');
   const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [services, setServices] = useState<Service[]>([]);
 
-  const filteredServices = SERVICES.filter(
+  useEffect(() => {
+    dynamicStore.getServices().then(setServices);
+  }, []);
+
+  const filteredServices = services.filter(
     (srv) => activeCategory === 'all' || srv.category === activeCategory
   );
 

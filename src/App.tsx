@@ -11,6 +11,8 @@ import { BlogView } from './components/BlogView';
 import { ContactView } from './components/ContactView';
 import { PrivacyPolicyView } from './components/PrivacyPolicyView';
 import { TermsView } from './components/TermsView';
+import { LoginView } from './components/LoginView';
+import { AdminPanel } from './components/AdminPanel';
 import { PhoneCall } from 'lucide-react';
 
 export default function App() {
@@ -142,19 +144,27 @@ export default function App() {
         return <PrivacyPolicyView onNavigate={handleNavigate} />;
       case 'terms-conditions':
         return <TermsView onNavigate={handleNavigate} />;
+      case 'login':
+        return <LoginView onNavigate={handleNavigate} />;
+      case 'admin':
+        return <AdminPanel onNavigate={handleNavigate} />;
       case 'home':
       default:
         return <HomeView onNavigate={handleNavigate} />;
     }
   };
 
+  const isPlainLayout = currentView === 'login' || currentView === 'admin';
+
   return (
     <div className="min-h-screen flex flex-col font-sans bg-[#FAF7F2] text-stone-900 transition-colors duration-300 relative selection:bg-amber-600 selection:text-white overflow-x-hidden">
       {/* Persistent Page Header Navbar */}
-      <Header
-        currentView={currentView}
-        onNavigate={handleNavigate}
-      />
+      {!isPlainLayout && (
+        <Header
+          currentView={currentView}
+          onNavigate={handleNavigate}
+        />
+      )}
 
       {/* Active screen content layout */}
       <main className="flex-grow">
@@ -162,24 +172,26 @@ export default function App() {
       </main>
 
       {/* Floating CTA Click-to-Action button */}
-      <div
-        className={`fixed bottom-8 right-8 z-[90] transition-all duration-300 ${
-          showFloatingCta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
-        }`}
-        id="persistent-floating-call-cta"
-      >
-        <a
-          href="#contact"
-          onClick={handleFloatingCtaClick}
-          className="inline-flex items-center gap-2 px-5 py-3.5 bg-[#0A84FF] hover:bg-sky-505 hover:bg-blue-600 text-white rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg active:scale-95 select-none"
+      {!isPlainLayout && (
+        <div
+          className={`fixed bottom-8 right-8 z-[90] transition-all duration-300 ${
+            showFloatingCta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+          }`}
+          id="persistent-floating-call-cta"
         >
-          <PhoneCall className="w-4 h-4 animate-bounce" />
-          Book A Call
-        </a>
-      </div>
+          <a
+            href="#contact"
+            onClick={handleFloatingCtaClick}
+            className="inline-flex items-center gap-2 px-5 py-3.5 bg-[#0A84FF] hover:bg-sky-505 hover:bg-blue-600 text-white rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg active:scale-95 select-none"
+          >
+            <PhoneCall className="w-4 h-4 animate-bounce" />
+            Book A Call
+          </a>
+        </div>
+      )}
 
       {/* Consolidated footer element */}
-      <Footer onNavigate={handleNavigate} />
+      {!isPlainLayout && <Footer onNavigate={handleNavigate} />}
     </div>
   );
 }

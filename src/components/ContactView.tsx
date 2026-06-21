@@ -3,6 +3,7 @@ import { OnboardingState } from '../types';
 import { PremiumIcon } from './PremiumIcon';
 import { motion } from 'motion/react';
 import { Logo } from './Logo';
+import { dynamicStore } from '../lib/dynamicStore';
 
 interface ContactViewProps {
   onNavigate: (view: string) => void;
@@ -80,15 +81,17 @@ export function ContactView({ onNavigate }: ContactViewProps) {
     return true;
   };
 
-  const handleNextStep = () => {
+  const handleNextStep = async () => {
     if (!validateStep(currentStep)) return;
     if (currentStep < 3) {
        setCurrentStep((prev) => prev + 1);
     } else {
        // Submit action
+       await dynamicStore.captureLead(formData);
        setIsSubmitted(true);
     }
   };
+
 
   const handlePrevStep = () => {
     if (currentStep > 1) {

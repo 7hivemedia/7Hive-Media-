@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { CASE_STUDIES } from '../data';
+import { useState, useEffect } from 'react';
+import { dynamicStore } from '../lib/dynamicStore';
+import { CaseStudy } from '../types';
 import { PremiumIcon } from './PremiumIcon';
 
 interface WorkViewProps {
@@ -8,8 +9,13 @@ interface WorkViewProps {
 
 export function WorkView({ onNavigate }: WorkViewProps) {
   const [activeFilter, setActiveCategory] = useState<'all' | 'lead-gen' | 'local' | 'seo'>('all');
+  const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
 
-  const filteredStudies = CASE_STUDIES.filter(
+  useEffect(() => {
+    dynamicStore.getCaseStudies().then(setCaseStudies);
+  }, []);
+
+  const filteredStudies = caseStudies.filter(
     (cs) => activeFilter === 'all' || cs.category === activeFilter
   );
 
