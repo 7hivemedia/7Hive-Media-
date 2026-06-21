@@ -14,6 +14,7 @@ import { TermsView } from './components/TermsView';
 import { LoginView } from './components/LoginView';
 import { AdminPanel } from './components/AdminPanel';
 import { PhoneCall } from 'lucide-react';
+import { dynamicStore } from './lib/dynamicStore';
 
 export default function App() {
   // Current subview state tracking hash
@@ -58,6 +59,32 @@ export default function App() {
   useEffect(() => {
     document.body.classList.remove('dark-theme');
   }, []);
+
+  // Sync dynamic page-specific SEO metadata variables live
+  useEffect(() => {
+    dynamicStore.getSEOConfig().then((configs) => {
+      const config = configs.find((c) => c.page_id === currentView) || configs.find((c) => c.page_id === 'home');
+      if (config) {
+        document.title = config.title;
+        
+        let metaDescription = document.querySelector('meta[name="description"]');
+        if (!metaDescription) {
+          metaDescription = document.createElement('meta');
+          metaDescription.setAttribute('name', 'description');
+          document.head.appendChild(metaDescription);
+        }
+        metaDescription.setAttribute('content', config.description);
+
+        let metaKeywords = document.querySelector('meta[name="keywords"]');
+        if (!metaKeywords) {
+          metaKeywords = document.createElement('meta');
+          metaKeywords.setAttribute('name', 'keywords');
+          document.head.appendChild(metaKeywords);
+        }
+        metaKeywords.setAttribute('content', config.keywords);
+      }
+    });
+  }, [currentView]);
 
   // Client coordinate tracker with robust event delegation for interactive elements
   useEffect(() => {
