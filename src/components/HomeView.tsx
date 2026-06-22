@@ -88,8 +88,14 @@ export function HomeView({ onNavigate }: HomeViewProps) {
   return (
     <div className="pt-20">
       {/* 1. Hero Block */}
-      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden py-16 px-6 md:px-12 bg-white dark:bg-[#121212] transition-colors duration-300">
+      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden py-16 px-6 md:px-12 bg-transparent transition-colors duration-300">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-100/10 via-neutral-100/10 to-transparent dark:from-[#0A84FF]/5 dark:via-transparent dark:to-transparent" />
+        
+        {/* Integrated mesh gradients matching the precise palette of the dashboard composition - merging gradients cleanly into background */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,_rgba(14,165,233,0.14),_transparent_50%)] dark:bg-[radial-gradient(circle_at_75%_35%,_rgba(14,165,233,0.08),_transparent_50%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_65%,_rgba(79,70,229,0.11),_transparent_45%)] dark:bg-[radial-gradient(circle_at_25%_65%,_rgba(79,70,229,0.07),_transparent_45%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_75%,_rgba(245,158,11,0.15),_transparent_40%)] dark:bg-[radial-gradient(circle_at_85%_75%,_rgba(245,158,11,0.08),_transparent_40%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,_rgba(6,182,212,0.1),_transparent_40%)] dark:bg-[radial-gradient(circle_at_15%_25%,_rgba(6,182,212,0.05),_transparent_40%)] pointer-events-none" />
         
         {/* Full-width elegant sweeping golden wave & decorative assets */}
         <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden hidden lg:block">
@@ -117,12 +123,12 @@ export function HomeView({ onNavigate }: HomeViewProps) {
         </div>
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10 w-full">
-          <div className="text-center lg:text-left space-y-5 sm:space-y-6 flex flex-col items-center lg:items-start max-w-2xl mx-auto lg:max-w-none">
+          <div className="text-center lg:text-left space-y-5 sm:space-y-6 flex flex-col items-center lg:items-start max-w-2xl mx-auto lg:max-w-none min-w-0 w-full">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#0A84FF]/10 border border-[#0A84FF]/20 rounded-full text-xs font-semibold text-[#0A84FF]">
               <span className="w-2 h-2 rounded-full bg-[#0A84FF] animate-pulse" />
               Digital Growth Agency
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-50 leading-[1.12] sm:leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-50 leading-[1.12] sm:leading-tight">
               Turn Attention <br className="hidden sm:inline" />
               Into <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0A84FF] to-blue-500 underline decoration-[#FFD700] decoration-wavy decoration-3 underline-offset-8">Revenue.</span>
             </h1>
@@ -205,7 +211,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
 
           {/* Right composition of pristine dashboard components from the image - enabled beautifully on mobile with responsive scale */}
           <div 
-            className="flex items-center justify-center min-h-[360px] xs:min-h-[420px] sm:min-h-[480px] lg:min-h-[540px] relative select-none mt-6 lg:mt-0 w-full overflow-hidden"
+            className="flex flex-col items-center justify-center gap-10 lg:gap-14 min-h-[360px] xs:min-h-[420px] sm:min-h-[480px] lg:min-h-[540px] relative select-none mt-6 lg:mt-0 w-full overflow-visible min-w-0"
             id="hero-dashboard-scene-container"
           >
             {/* Ambient Multi-Colored Background Glows matching the reference image */}
@@ -215,7 +221,11 @@ export function HomeView({ onNavigate }: HomeViewProps) {
             <div className="absolute bottom-[10px] left-[-50px] w-[240px] sm:w-[280px] h-[240px] sm:h-[280px] rounded-full bg-sky-200/20 dark:bg-[#0A84FF]/5 blur-[65px] sm:blur-[85px] pointer-events-none z-0 mix-blend-multiply dark:mix-blend-normal" />
 
             {/* Composition Grid wrapper with auto-scale matching mobile and desktop screen sizes */}
-            <div className="relative w-[500px] h-[380px] z-10 scale-[0.6] xs:scale-[0.72] sm:scale-85 md:scale-100 lg:scale-100 origin-center shrink-0">
+            <div 
+              className="relative w-[275px] h-[209px] xs:w-[350px] xs:h-[266px] sm:w-[425px] sm:h-[323px] md:w-[500px] md:h-[380px] lg:w-[400px] lg:h-[304px] xl:w-[500px] xl:h-[380px] z-10 shrink-0 select-none overflow-visible flex items-center justify-center transition-all duration-300"
+              id="hero-dashboard-adaptive-bounds"
+            >
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[380px] origin-center scale-[0.55] xs:scale-[0.7] sm:scale-[0.85] md:scale-100 lg:scale-[0.8] xl:scale-100 shrink-0">
               
               {/* 1. CENTRAL MAIN DASHBOARD (REVENUE OVER TIME) */}
               <div 
@@ -376,11 +386,12 @@ export function HomeView({ onNavigate }: HomeViewProps) {
               </div>
 
             </div>
+            </div>
 
             {/* 6. BOTTOM WIDE GRADIENT BRANDING ENGINE BLOCK */}
             <div 
               id="unifined-engine-bar" 
-              className="absolute -bottom-16 left-12 right-0 bg-gradient-to-r from-blue-600/90 via-indigo-600/90 to-purple-600/90 backdrop-blur-lg rounded-2xl p-4 shadow-[0_20px_45px_-8px_rgba(79,70,229,0.25)] border border-white/20 flex items-center justify-between z-30 transition-all duration-500 hover:shadow-[0_25px_50px_-6px_rgba(79,70,229,0.35)] hover:scale-[1.01]"
+              className="relative w-full max-w-[275px] xs:max-w-[350px] sm:max-w-[425px] md:max-w-[500px] lg:max-w-[400px] xl:max-w-[500px] bg-gradient-to-r from-blue-600/90 via-indigo-600/90 to-purple-600/90 backdrop-blur-lg rounded-2xl p-4 shadow-[0_20px_45px_-8px_rgba(79,70,229,0.25)] border border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 z-30 transition-all duration-500 hover:shadow-[0_25px_50px_-6px_rgba(79,70,229,0.35)] hover:scale-[1.01]"
             >
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-white text-base shadow-inner">
@@ -404,7 +415,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
       </section>
 
       {/* 2. Intro Section */}
-      <section className="py-20 px-6 md:px-12 bg-neutral-50 dark:bg-[#1a1a1a] transition-colors duration-300">
+      <section className="py-20 px-6 md:px-12 bg-neutral-50/50 backdrop-blur-sm dark:bg-[#1a1a1a]/50 transition-colors duration-300">
         <div className="max-w-7xl mx-auto text-center space-y-12">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -490,7 +501,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
       </section>
 
       {/* Our Expertise Section */}
-      <section className="relative py-24 px-6 md:px-12 bg-neutral-50 dark:bg-[#0d0d0d] border-t border-b border-black/5 dark:border-white/5 overflow-hidden transition-colors duration-300" id="expertise">
+      <section className="relative py-24 px-6 md:px-12 bg-neutral-50/50 backdrop-blur-sm dark:bg-[#0d0d0d]/50 border-t border-b border-black/5 dark:border-white/5 overflow-hidden transition-colors duration-300" id="expertise">
         {/* Subtle ambient light leaks */}
         <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-[#0A84FF]/5 dark:bg-[#0a84ff]/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/5 dark:bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
@@ -668,7 +679,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
       </section>
 
       {/* 3. Services Summary */}
-      <section className="py-20 px-6 md:px-12 bg-white dark:bg-[#121212] transition-colors duration-300">
+      <section className="py-20 px-6 md:px-12 bg-transparent transition-colors duration-300">
         <div className="max-w-7xl mx-auto space-y-12">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -718,7 +729,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
       </section>
 
       {/* 4. Case Studies Brief */}
-      <section className="py-20 px-6 md:px-12 bg-neutral-50 dark:bg-[#1a1a1a] transition-colors duration-300">
+      <section className="py-20 px-6 md:px-12 bg-neutral-50/50 backdrop-blur-sm dark:bg-[#1a1a1a]/50 transition-colors duration-300">
         <div className="max-w-7xl mx-auto space-y-12">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -780,7 +791,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
       </section>
 
       {/* 5. Metrics counter view */}
-      <section className="py-16 px-6 md:px-12 bg-white dark:bg-[#121212] border-y border-black/5 dark:border-white/10 transition-colors duration-300">
+      <section className="py-16 px-6 md:px-12 bg-transparent border-y border-black/5 dark:border-white/10 transition-colors duration-300">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -808,7 +819,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
       </section>
 
       {/* 6. Client Carousel Block */}
-      <section className="py-20 px-6 md:px-12 bg-neutral-50 dark:bg-[#1a1a1a] transition-colors duration-300 overflow-hidden">
+      <section className="py-20 px-6 md:px-12 bg-neutral-50/50 backdrop-blur-sm dark:bg-[#1a1a1a]/50 transition-colors duration-300 overflow-hidden">
         <div className="max-w-5xl mx-auto space-y-12 relative">
           <div className="text-center space-y-4">
             <p className="text-xs font-bold text-[#0A84FF] uppercase tracking-widest">Feedback</p>
@@ -858,7 +869,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
       </section>
 
       {/* 7. Quick FAQ accordion */}
-      <section className="py-20 px-6 md:px-12 bg-white dark:bg-[#121212] transition-colors duration-300">
+      <section className="py-20 px-6 md:px-12 bg-transparent transition-colors duration-300">
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="text-center space-y-4">
             <p className="text-xs font-bold text-[#0A84FF] uppercase tracking-widest">Knowledge Base</p>

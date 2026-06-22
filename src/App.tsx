@@ -184,7 +184,7 @@ export default function App() {
   const isPlainLayout = currentView === 'login' || currentView === 'admin';
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-[#FAF7F2] text-stone-900 transition-colors duration-300 relative selection:bg-amber-600 selection:text-white overflow-x-hidden">
+    <div className="min-h-screen flex flex-col font-sans bg-transparent text-stone-900 transition-colors duration-300 relative selection:bg-amber-600 selection:text-white overflow-x-hidden">
       {/* Persistent Page Header Navbar */}
       {!isPlainLayout && (
         <Header
