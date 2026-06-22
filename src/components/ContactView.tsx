@@ -14,6 +14,7 @@ export function ContactView({ onNavigate }: ContactViewProps) {
   const [formData, setFormData] = useState<OnboardingState>({
     fullName: '',
     emailAddr: '',
+    contactNumber: '',
     companyName: '',
     services: [],
     budget: '',
@@ -70,6 +71,10 @@ export function ContactView({ onNavigate }: ContactViewProps) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(formData.emailAddr.trim())) {
         setValidationError('Please provide a valid business email address.');
+        return false;
+      }
+      if (!formData.contactNumber.trim()) {
+        setValidationError('Please enter your contact number to proceed.');
         return false;
       }
     } else if (step === 3) {
@@ -247,6 +252,18 @@ export function ContactView({ onNavigate }: ContactViewProps) {
                             placeholder="john@company.com"
                             value={formData.emailAddr}
                             onChange={(e) => setFormData({ ...formData, emailAddr: e.target.value })}
+                            className="w-full text-xs px-4 py-3 border border-black/5 dark:border-white/10 rounded-lg bg-neutral-50 dark:bg-[#1e1e1e] text-black dark:text-white"
+                          />
+                        </div>
+
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-neutral-400">Contact Number *</label>
+                          <input
+                            type="tel"
+                            required
+                            placeholder="+1 (555) 000-0000"
+                            value={formData.contactNumber}
+                            onChange={(e) => setFormData({ ...formData, contactNumber: e.target.value })}
                             className="w-full text-xs px-4 py-3 border border-black/5 dark:border-white/10 rounded-lg bg-neutral-50 dark:bg-[#1e1e1e] text-black dark:text-white"
                           />
                         </div>

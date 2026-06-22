@@ -49,6 +49,7 @@ export interface BlogPost {
 export interface OnboardingState {
   fullName: string;
   emailAddr: string;
+  contactNumber: string;
   companyName: string;
   services: string[];
   budget: 'under-50k' | '50k-2l' | 'above-2l' | '';

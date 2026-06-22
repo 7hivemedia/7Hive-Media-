@@ -764,7 +764,10 @@ export function AdminPanel({ onNavigate }: AdminPanelProps) {
                               <div>
                                 <span className="text-[10px] uppercase font-bold text-neutral-400 block mb-0.5">Author (Full Name)</span>
                                 <span className="text-xs font-bold text-stone-900 dark:text-white leading-tight block">{lead.fullName}</span>
-                                <span className="text-[10px] text-neutral-500 font-mono">{lead.emailAddr}</span>
+                                <span className="text-[10px] text-neutral-500 font-mono block">{lead.emailAddr}</span>
+                                {lead.contactNumber && (
+                                  <span className="text-[10px] text-neutral-500 font-medium block mt-0.5">📞 {lead.contactNumber}</span>
+                                )}
                               </div>
                               <div>
                                 <span className="text-[10px] uppercase font-bold text-neutral-400 block mb-0.5">Company Profile</span>

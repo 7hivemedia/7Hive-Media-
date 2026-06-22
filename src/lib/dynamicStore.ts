@@ -172,6 +172,7 @@ CREATE TABLE IF NOT EXISTS public.leads (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   full_name TEXT NOT NULL,
   email_addr TEXT NOT NULL,
+  contact_number TEXT,
   company_name TEXT,
   services TEXT[],
   budget TEXT,
@@ -512,6 +513,7 @@ export const dynamicStore = {
             id: itm.id,
             fullName: itm.full_name,
             emailAddr: itm.email_addr,
+            contactNumber: itm.contact_number || '',
             companyName: itm.company_name,
             services: itm.services || [],
             budget: itm.budget || '',
@@ -546,6 +548,7 @@ export const dynamicStore = {
           .insert([{
             full_name: leadData.fullName,
             email_addr: leadData.emailAddr,
+            contact_number: leadData.contactNumber,
             company_name: leadData.companyName,
             services: leadData.services,
             budget: leadData.budget,
